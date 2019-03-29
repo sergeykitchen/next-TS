@@ -1,12 +1,24 @@
-import * as React from 'react';
+import { NextFunctionComponent, NextContext } from 'next'
 import Counter from '../components/Counter';
 import Layout from '../components/Layout';
+import Api from '../API';
 
+const SHOW = 'friends'
 
-const Home: React.FunctionComponent = () => (
-  <Layout>
-    <Counter />
-  </Layout>
-)
+type Props = {
+
+}
+
+  const Home: NextFunctionComponent = () => (
+    <Layout>
+      <Counter />
+    </Layout>
+  )
+
+Home.getInitialProps = async ({ pathname }: NextContext) => {
+  Api.getList(SHOW)
+    .then(res => console.log(res))
+  return {}
+}
 
 export default Home;

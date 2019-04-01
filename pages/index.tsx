@@ -17,7 +17,7 @@ type Props = {
 
 Home.getInitialProps = async ({ pathname }: NextContext) => {
   Api.getList(SHOW)
-    .then(res => console.log(res))
+    .then(res => {})
   return {}
 }
 

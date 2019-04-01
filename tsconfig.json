@@ -4,7 +4,8 @@
     "target": "esnext",
     "jsx": "preserve",
     "sourceMap": false,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strictFunctionTypes": false
   },
   "exclude": [
     "out",

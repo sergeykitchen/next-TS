@@ -1,5 +1,7 @@
 import { NextFunctionComponent, NextContext } from 'next'
-import Counter from '../components/Counter';
+import { Dispatch, connect, bindActionCreators } from 'react-redux';
+import { State } from '../model/index';
+import { ThunkDispatch } from "redux-thunk";
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
 import Api from '../API';
@@ -10,17 +12,34 @@ type Props = {
 
 }
 
-  const Home: NextFunctionComponent = () => (
-    <Layout>
-      <Loader />
+const Home: NextFunctionComponent = () => (
+  <Layout>
+    <Loader />
+  </Layout>
+)
 
-    </Layout>
-  )
+Home.getInitialProps = async ({ pathname, store }: NextContext) => {
+  console.log(pathname);
 
-Home.getInitialProps = async ({ pathname }: NextContext) => {
-  Api.getList(SHOW)
-    .then(res => {})
   return {}
 }
 
-export default Home;
+interface DispatchProps {
+  getPosts: typeof Api.getList;
+}
+
+const mapStateToProps: Function = (state: State): {} => {
+  const { posts, error } = state.posts
+  return {
+    posts,
+    error
+  };
+};
+
+const mapDispatchToProps: Function = (dispatch: Dispatch<State>): DispatchProps => {
+  return {
+    getPosts: () => dispatch(Api.getList())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

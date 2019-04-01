@@ -2,7 +2,7 @@ import * as React from 'react';
 import LinkComponet from '../LinkCompponent';
 import './index.scss';
 
-const Header: React.FunctionComponent = () => (
+const Header: React.FunctionComponent<{}> = () => (
   <header className="w-header">
     <nav className="b-nav">
       <LinkComponet href="/">

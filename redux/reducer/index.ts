@@ -4,5 +4,6 @@ import { getPost } from './post';
 import {getPosts} from './posts';
 
 export default combineReducers<State>({
-  getPosts,
+  posts: getPosts,
+  post: getPost
 });
